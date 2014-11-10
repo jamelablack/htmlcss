@@ -1,0 +1,281 @@
+What CSS is
+
+CSS (which stands for Cascading Style Sheets) is a language used to describe the appearance and formatting of your HTML.
+
+A style sheet is a file that describes how an HTML file should look. That's it!
+
+We say these style sheets are cascading because the sheets can apply formatting when more than one style applies. For instance, if you say all paragraphs should have blue font, but you specifically single out one paragraph to have red font, CSS can do that!
+
+
+Why separate form from function?
+
+Great work! Look at you. You're already writing CSS.
+
+There are two main reasons for separating your form/formatting (CSS) from your functional content/structure (HTML):
+
+    You can apply the same formatting to several HTML elements without rewriting code (e.g. style="color:red":) over and over
+    You can apply similar appearance and formatting to several HTML pages from a single CSS file
+
+Look at the HTML in index.html. That's a lot of <span></span> tags! All those words are in regular font, but we want them to be super fancy.
+
+Example: index.html
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+		<title>Even Fancier Fonts</title>
+	</head>
+	<body>
+		<p>Much of this is regular text, but some of it is <span>fancy</span>!
+		We can use our <span>newly fancified font</span> to add some
+		<span>flair</span> to our website. It'd be a <span>royal pain</span> 
+		to make each of these span tags <span>fancy</span> individually,
+		but it's a cinch with <span>CSS</span>!</p>
+	</body>
+</html>
+
+stylesheet.css
+p {
+    font-size: 100px;
+}
+
+span {
+	font-family: cursive
+}
+
+
+If it's in, it's out!
+
+We previously showed you how to do inline styling with HTML, like so:
+
+<p style="color:red">Red font!</p>
+
+This is a less awesome way to style your website for the reasons we just mentioned: you have to write the same code over and over, and if you want to make a big stylistic change to several elements, you have to change every single style tag. With a single CSS file, you only have to make the change in one place!
+
+There are two ways to put CSS in one place. This first is to put your CSS between <style></style> tags, right in the same file as your HTML. These <style> tags go inside the <head></head> of your webpage; check out the example in the editor to the right.
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			p {
+				color: purple;
+			}
+		</style>
+		<title>Result</title>
+	</head>
+	<body>
+		<p>Check it out! I'm purple!</p>
+	</body>
+</html>
+
+
+Link it up!
+
+But there's an even better way.
+
+You know you should write your CSS in a totally separate file. But how do you make sure your HTML file can see that CSS information?
+
+You do this by putting a <link> tag (as you saw in the first exercise of this course) between the <head>...</head> tags of your HTML page. Your <link> tag needs three attributes:
+
+    A type attribute that should always be equal to "text/css"
+    A rel attribute that should always be equal to "stylesheet"
+    A href attribute that should point to the web address of your CSS file
+
+In the editor to the right, you'll see two files: index.html and stylesheet.css.
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Result</title>
+		<link type="text/css" rel="stylesheet" href="stylesheet.css/"/>
+	</head>
+	<body>
+		<p>I want to be SIZE 44 font!</p>
+	</body>
+</html>
+
+
+PSA: Self-closing tags
+
+This brings us to a quick (but noteworthy!) concept in HTML: the self-closing tag.
+
+Because nothing ever goes between <link></link> tags, it's okay to use a single set of <>s to be the opening and closing tags. You do that like so:
+
+<link type="text/css" rel="stylesheet" href="CSS file address"/>
+
+You may have noticed us do something similar with the <img> tag:
+
+<img src="web address"/>
+
+Most tags are not self-closing, but we'll point out the self-closing ones to help save you time and typing.
+
+
+Syntax for the wintax
+
+CSS syntax is different from the HTML you're used to, but don't worry: it's easy to pick up! The general format looks like this:
+
+selector {
+    property: value;
+}
+
+A selector can be any HTML element, such as <p>, <img>, or <table>. You just take off the <>s! To make a paragraph's text red with CSS, you'd type:
+
+p {
+    color: red;
+}
+
+A property is an aspect of a selector. For instance, you can change the font-family, color, and font-size of the text on your web pages (in addition to many more).
+
+A value is a possible setting for a property. color can be red, blue, black, or almost any color; font-family can be a whole bunch of different fonts; and so on.
+
+You need to end each property-value with a semi-colon (;). That's how CSS knows you're done with one pair and ready for the next.
+
+One selector, many properties
+
+Great work!
+
+Another cool advantage of CSS is that you can set many properties for one selector. For instance, if you want to set a paragraph's font, font color, and font size, you can simply write:
+
+p {
+    font-family: Arial;
+    color: blue;
+    font-size: 24px;
+}
+
+Remember: end each property-value pair with a semicolon!
+
+Please note: If you have adjusted your browser's zoom, tests involving font-size and height will not work correctly. To remedy this, please type Command+0 or Ctrl+0 to reset your view.
+
+
+The importance of semicolons
+
+As you start adding more and more property-value pairs for each CSS selector, it's important to remember to put a semicolon (;) at the end of each line.
+
+The semicolon tells CSS that one property-value pair is over and it's time to move on to the next one. Without semicolons, it'll become confused and your page won't look right.
+
+Also, don't forget: all property-value pairs for a selector are surrounded by curly braces ({}).
+
+
+Color commentary
+
+Great! You're really getting the hang of this.
+
+While it's important to get all your syntax down correctly, it's also a good idea to write comments as you go along. Good comments will help remind you why you did something a certain way (or will help someone else out if they're reading your code without you there to explain it).
+
+As you've seen, HTML comments look like this:
+
+<!--I'm a comment!-->
+
+CSS comments, on the other hand, look like this:
+
+/*I'm a comment!*/
+
+Remember: the computer doesn't look at comments when figuring out what your HTML and CSS should do, but writing good comments is a good habit you want to pick up!
+
+
+
+
+You've got the main ideas—now it's time to dive into the nitty-gritty.
+
+You've noticed that when we've asked you to set color properties using CSS, we've been having you type things like color:red. You may have asked yourself: what if I want maroon? Or fire engine red? Or more of a red-orange? Does CSS know all those words?
+
+The answer is no. It can, however, understand millions of colors in the form of hexadecimal values.
+
+You're already extremely familiar with decimal values: it's everyday counting! You know when you see a number (e.g. 1,432) that each digit can only be the ten values 0 through 9. Because there are only ten possibilities, we say that regular counting is base-10.
+
+Hexadecimal counting is base-16. Each digit can be the numbers 0 through 9 or the letters a through f! Crazy, right? Check it out:
+
+Roses are red...
+
+There are a lot of tools available on the Internet for looking up hexadecimal (or simply hex) color values.
+
+Search for "hex color palette" or "hex color picker" with your favorite web browser to find a bunch of options!
+
+Hex values always start with a pound sign (#), are up to six "digits" long, and are case-insensitive: that is, they don't care about capitalization. #FFC125 and #ffc125 are the same color.
+
+
+Pixels and ems
+
+Great work! We'll do more with colors as you learn more CSS.
+
+When we've asked you to adjust font size, we've specified that the unit you should use is px (for "pixels"), like so:
+
+p {
+    font-size: 10px;
+}
+
+A pixel is a dot on your computer screen. Specifying font sizes in pixels is great when you want the user to see exactly on their screen what you designed on yours, though it assumes your screens are of similar size.
+
+What if the user is using a screen that's a very different size from yours, though (like a smartphone screen)? Enter ems. (Don't confuse these with the <em></em> tags we use for emphasis!)
+
+The font-size unit em is a relative measure: one em is equal to the default font size on whatever screen the user is using. That makes it great for smartphone screens, since it doesn't try to tell the smartphone exactly how big to make a font: it just says, "Hey, 1em is the font size that you normally use, so 2em is twice as big and 0.5em is half that size!"
+
+Check it out: we've set three different paragraphs to the font-sizes 1em, 0.5em, and 2em. For now, use whichever unit (px or em) you're more comfortable with—we just wanted to show you em now so you're not surprised when you see it later
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Result</title>
+	</head>
+	<body>
+		<p style="font-size: 1em">One em!</p>
+		<p style="font-size: 0.5em">Half an em!</p>
+		<p style="font-size: 2em">TWO EM!</p>
+	</body>
+</html>
+
+
+A font of knowledge
+
+We've also asked you to change the font-family of certain elements using CSS. You've seen us use the fonts Verdana, Courier, and Garamond. But how many fonts does CSS know?
+
+The answer is: it depends. Most computers will understand popular fonts like Verdana, Courier, and Garamond, but each individual computer has different fonts installed on it. The good news is that CSS has some built-in defaults meant to ensure your users see what you intend. They are:
+
+serif: A font with little decorative bits on the ends of the strokes that make up letters. Do a search on "serif" to see what we mean.
+
+sans-serif: A plain-looking font, like this one. It doesn't have the little doohickies on the ends of letters like a serif font does.
+
+cursive: A scripty font! It looks like cursive writing.
+
+We'll show you how to import your own fonts in a later course! This will help make sure the person viewing your page has all the fonts you want them to have.
+
+
+Backup values
+
+You don't have to jump straight to a default value like cursive or sans-serif: you can tell CSS to try several, going from one to the next if the one you want isn't available.
+
+For example, if you write:
+
+p {
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+CSS will first try to apply Tahoma to your paragraphs. If the user's computer doesn't have that font, it will try Verdana next, and if that doesn't work, it will show a default sans-serif font.
+
+
+
+Background color, height, and width
+
+Remember our friend <div>, and how we used it to make those multi-colored blocks? Time for you to build your own blocks! (Well, block. Let's not get ahead of ourselves.)
+
+There are three properties you'll need to set values for:
+
+    background-color, which you set to a color or hex value
+    height, which you set to a value in pixels
+    width, which is also measured in pixels
+
+These exercises will give you a brief overview of the different HTML elements you can select and what some of their property-value pairs are (like the new ones we mention above). We'll cover HTML element selection more in the next course!
+
+
+Bordering on insanity
+
+Many HTML elements support the border property. This can be especially useful with tables.
+
+The border property in turn supports several values. For example, for a border 2 pixels thick, solid, and red, you'd type
+
+selector {
+    border: 2px solid red;
+}
+
+Borders: pretty fancy.
+

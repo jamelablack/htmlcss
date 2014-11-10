@@ -1,0 +1,200 @@
+
+Taking up space
+
+Cool, right? Each HTML element gets its own box to live in.
+
+As you saw, the outermost box of each element went all the way across the page. This is why until now, your HTML elements have been sitting on top of one another: by default, they take up the full width of the page.
+
+We can change all this with the first positioning property we'll learn: the display property. We'll learn about four possible values.
+
+block: This makes the element a block box. It won't let anything sit next to it on the page! It takes up the full width.
+
+inline-block: This makes the element a block box, but will allow other elements to sit next to it on the same line.
+
+inline: This makes the element sit on the same line as another element, but without formatting it like a block. It only takes up as much width as it needs (not the whole line).
+
+none: This makes the element and its content disappear from the page entirely!
+_____
+
+
+Inline-block
+
+Good work! If you didn't notice much of a difference, don't worry. Our <div>s were block elements by default; as we specify different display values, they'll start to move around.
+
+As mentioned, any element that comes in as a block (say, a paragraph) will automatically take up the full width of the page, no matter how much or how little content you put in.
+
+If we specify a display of inline-block, however, our blocks are still blocks, but will be able to sit next to each other on the same line.
+_____
+
+Inline
+
+Did you see that? Your <div>s all moved onto the same line! You can already start to see how this type of positioning can be useful for navigation bars like the one at the top of the main Codecademy page (where you can click "Learn," "Teach," and so on).
+
+The inline-block value allows you to put several block elements on the same line. The inline value places all your elements next to one another, but not as blocks: they don't keep their dimensions.
+_____
+
+None!
+
+The good news is, inline places all your elements on a single line. The bad news is that it doesn't maintain their "box"ness: as you saw, all your <div>s got squished to the smallest possible width!
+
+The inline display value is better suited for HTML elements that are blocks by default, such as headers and paragraphs.
+
+Finally, we'll try out the display value none. As you might expect, this prevents the page from displaying the selected element. As you might not expect, this removes the selected element from the page entirely, including any children and any content. Poof! Gone! (But not gone forever—changing the display value away from none will bring everything back.)
+____
+
+
+Sketching it out
+
+Now that you understand more about the display property and the box model, we can delve into the details of how each individual box behaves.
+
+Check out the diagram in the Result tab (it's the one from the first exercise in this lesson). As you can see, each box is made of layers. From the outermost to the innermost:
+
+The margin is the space around the element. The larger the margin, the more space between our element and the elements around it. We can adjust the margin to move our HTML elements closer to or farther from each other.
+
+The border is the edge of the element. It's what we've been making visible every time we set the border property.
+
+The padding is the spacing between the content and the border. We can adjust this value with CSS to move the border closer to or farther from the content.
+
+The content is the actual "stuff" in the box. If we're talking about a <p> element, the "stuff" is the text of the paragraph.
+
+You'll see abbreviations like TM, TB, and TP in the diagram. These stand for "top margin," "top border," and "top padding." As we'll see, we can adjust the top, right, left, and bottom padding, border, and margin individually.
+_______
+
+
+Margin
+
+Let's start with our margins. Adjusting our margins not only moves our element relative to other elements on the page, but also relative to the "walls" of the HTML document.
+
+For instance, if we take an HTML element with a specific width (such as our <div> in the editor) and set its margin to auto, this tells the document to automatically put equal left and right margins on our element, centering it on the page
+
+____
+
+Margin top, right, bottom, left
+
+If you want to specify a particular margin, you can do it like this:
+
+margin-top: /*some value*/
+margin-right: /*some value*/
+margin-bottom: /*some value*/
+margin-left: /*some-value*/
+
+You can also set an element's margins all at once: you just start from the top margin and go around clockwise (going from top to right to bottom to left). For instance,
+
+margin: 1px 2px 3px 4px;
+
+will set a top margin of 1 pixel, a right margin of 2, a bottom of 3, and a left of 4.
+Example:
+* {
+	border: 1px dashed black;
+}
+
+div {
+	height: 50px;
+	width: 100px;
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: #308014;
+	margin: auto;
+}
+
+
+_____
+
+
+Borders
+
+Well done! You can see how fine-tuning your margins will help you place elements where you'd like them to be on the page.
+
+We've worked with borders before, but it never hurts to have extra practice.
+	border: 4px solid #FF0000;
+
+	___
+Padding
+
+Good! Let's adjust the padding. Remember, the padding is the space between your border and your innermost layer: the actual content.
+
+Padding can be set in two ways, just like your margins. You can either select them individually, like this:
+
+padding-top: /*some value*/
+padding-right: /*some value*/
+padding-bottom: /*some value*/
+padding-left: /*some-value*/
+
+Or select them all in one declaration, like this:
+
+padding: value value value value;
+
+You should also know that if you want your padding to be the same for all four sides, you can declare that value only once. padding: 10px will give your HTML element 10 pixels of padding on all sides.
+______
+
+
+Negative values
+
+Did you see that? Your <div> got huge! That's because the background color is the same for the content and the padding.
+
+When you give CSS a positive padding or margin value, it puts that space between the element and its reference: for instance, if you have a <div> and you give it a margin-left of 20px, it puts twenty pixels between the left margin of that <div> and the side of the screen. This effectively moves the <div> twenty pixels to the right.
+
+If you want to move an element in the other direction, you can give CSS a negative value: margin-left: -20px will move the element twenty pixels to the left.
+_____
+FLOATING
+
+
+To the right!
+
+Okay! So we know how our individual elements are constructed. But how do we determine where they go on the page?
+
+One way is to use floats. When you float an element on the page, you're telling the webpage: "I'm about to tell you where to put this element, but you have to put it into the flow of other elements." This means that if you have several elements all floating, they all know the others are there and don't land on top of each other.
+
+You can think of the HTML page as sort of like a sea, and floating elements as boats on it: all the boats have positions on the sea, and they all see and steer clear of each other.
+
+(Some of the positioning methods we'll learn in upcoming sections can accidentally drop elements on top of each other.)
+_____
+
+
+Clearing elements
+
+Unfortunately, we sometimes mix large floating elements with non-floating ones, and elements do end up on top of each other.
+
+See your footer (the blue bit between the two columns)? It's stuck back there because we haven't told it something very important: to clear the other elements on the page!
+
+If you tell an element to clear: left, it will immediately move below any floating elements on the left side of the page; it can also clear elements on the right. If you tell it to clear: both, it will get out of the way of elements floating on the left and right!
+
+The syntax is what you're used to:
+
+element {
+    clear: /*right, left, or both*/
+}
+
+_____
+POSITIONING
+
+Static by default
+
+Great work so far! Now that you understand positioning elements with float, let's move on to slightly more complex positioning methods.
+
+If you don't specify an element's positioning type, it defaults to static. This just means "where the element would normally go." If you don't tell an element how to position itself, it just plunks itself down in the document.
+____
+Absolute positioning
+
+The first type of positioning is absolute positioning. When an element is set to position: absolute, it's then positioned in relation to the first parent element it has that doesn't have position: static. If there's no such element, the element with position: absolute gets positioned relative to <html>.
+
+To show you how this works, we've set the #outer div to have absolute positioning. This means that when you position the #inner div, it will be relative to #outer. (If #outer had the default positioning of static, then #inner would get positioned relative to the entire HTML document.)
+______
+
+Relative positioning
+
+Good! Did you notice how the #inner div moved 20 pixels in from the edge of the #outer div? That's absolute positioning at work.
+
+Relative positioning is more straightforward: it tells the element to move relative to where it would have landed if it just had the default static positioning.
+
+If you give an element relative positioning and tell it to have a margin-top of 10px, it doesn't move down ten pixels from any particular thing—it moves down ten pixels from where it otherwise would have been.
+
+___
+
+
+Fixed positioning
+
+Perfect! See? This positioning stuff's not so hard.
+
+Finally, fixed positioning anchors an element to the browser window—you can think of it as gluing the element to the screen. If you scroll up and down, the fixed element stays put even as other elements scroll past.
+
